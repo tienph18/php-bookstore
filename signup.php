@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Responsive Multipage BookStore Website</title>
 
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
         <!-- Google Fonts (Montserrat) -->
@@ -29,7 +29,7 @@
                     </div>
                     <button type="submit" name="submit" class="btn">Sign Up</button>
                 </form>
-                <small>Already have an account? <a href="signin.html">Sign In</a></small>
+                <small>Already have an account? <a href="signin.php">Sign In</a></small>
             </div>
         </section>
     </body>
