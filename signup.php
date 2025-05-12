@@ -16,7 +16,7 @@
         <section class="form__section">
             <div class="container form__section-container">
                 <h2>Sign Up</h2>
-                <form action="signup.php" method="POST" enctype="multipart/form-data">
+                <form action="<?= ROOT_URL ?>signup-logic.php" method="POST" enctype="multipart/form-data">
                     <input type="text" name="firstname" placeholder="First Name">
                     <input type="text" name="lastname" placeholder="Last Name">
                     <input type="text" name="username" placeholder="Username">
