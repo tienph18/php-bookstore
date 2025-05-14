@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 define('ROOT_URL', 'http://localhost/php-bookstore/');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'leowleow');
