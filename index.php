@@ -1,12 +1,16 @@
 <?php
     include 'partials/header.php';
+
+    // Get limit books from the database
+    $query = "SELECT * FROM books ORDER BY created_date DESC LIMIT 3";
+    $books = mysqli_query($conn, $query);
 ?>
     
     <!-- Render Featured Section -->
     <section class="featured">
         <div class="container featured__container">
             <div class="post__thumbnail">
-                <img src="./images/blog1.jpg">
+                <img src="./images/blog19.jpg">
             </div>
             <div class="post__info">
                 <a class="category__button">Wild Life</a>
@@ -32,112 +36,37 @@
     <!-- Render Posts Section -->
     <section class="posts">
         <div class="container posts__container">
-            <article class="post">
+            <?php while($book = mysqli_fetch_assoc($books)): ?>
+                <article class="post">
                 <div class="post__thumbnail">
-                    <img src="./images/blog2.jpg">
+                    <?php $thumbnail_path = 'images/' . $book['thumbnail']; ?>
+                    <?php if(file_exists($thumbnail_path)): ?>
+                        <img src="<?= $thumbnail_path ?>">
+                    <?php else: ?>
+                        <img src="./images/blog19.jpg">
+                    <?php endif ?>
                 </div>
                 <div class="post__info">
-                    <a href="category.php" class="category__button">Wild Life</a>
-                    <h3 class="post__title"><a href="post.php">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, laudantium.</a></h3>
-                    <p class="post__body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quo, laudantium.
+                    <h3 class="post__title"><a href="post.php"><?= $book['title'] ?></a></h3>
+                    <p class="post__body text-clamp">
+                        <?= $book['description'] ?>
                     </p>
                     <div class="post__author">
-                        <div class="post__author-avatar">
+                        <!-- <div class="post__author-avatar">
                             <img src="./images/avatar3.jpg">
-                        </div>
+                        </div> -->
                         <div class="post__author-info">
-                            <h5>By: LeowLeow</h5>
-                            <small>June 19, 2022 - 07:21</small>
+                            <h5>By: <?= $book['author'] ?></h5>
+                            <small><?= $book['created_date'] ?></small>
                         </div>
                     </div>
                 </div>
             </article>
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="./images/blog3.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category.php" class="category__button">Wild Life</a>
-                    <h3 class="post__title"><a href="post.php">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, laudantium.</a></h3>
-                    <p class="post__body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quo, laudantium.
-                    </p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="./images/avatar4.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: LeowLeow</h5>
-                            <small>June 19, 2022 - 07:21</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="./images/blog4.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category.php" class="category__button">Wild Life</a>
-                    <h3 class="post__title"><a href="post.php">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, laudantium.</a></h3>
-                    <p class="post__body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quo, laudantium.
-                    </p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="./images/avatar4.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: LeowLeow</h5>
-                            <small>June 19, 2022 - 07:21</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="./images/blog5.jpg">
-                </div>
-                <div class="post__info">
-                    <a href="category.php" class="category__button">Wild Life</a>
-                    <h3 class="post__title"><a href="post.php">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, laudantium.</a></h3>
-                    <p class="post__body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quo, laudantium.
-                    </p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="./images/avatar4.jpg">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: LeowLeow</h5>
-                            <small>June 19, 2022 - 07:21</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
+            <?php endwhile ?>
+            
         </div>
     </section>
     <!-- End of Posts Section -->
-
-    <!-- Render Categories Section -->
-    <section class="category__buttons">
-        <div class="container category__buttons-container">
-            <a href="category.php" class="category__button">Art</a>
-            <a href="category.php" class="category__button">Wild Life</a>
-            <a href="category.php" class="category__button">Travel</a>
-            <a href="category.php" class="category__button">Music</a>
-            <a href="category.php" class="category__button">Science & Tech</a>
-            <a href="category.php" class="category__button">Food</a>
-            <a href="category.php" class="category__button">Sport</a>
-        </div>
-    </section>
-    <!-- End of Categories Section -->
-
 <?php
     include 'partials/footer.php';
 ?>

@@ -30,7 +30,6 @@
         <link rel="stylesheet" href="<?= ROOT_URL ?>/css/style.css">
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
-        <!-- Google Fonts (Montserrat) -->
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     </head>
     <body>

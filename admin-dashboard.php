@@ -5,27 +5,10 @@ if (!isset($_SESSION['user-id'])) {
     header('location: ' . ROOT_URL . 'signin.php');
     die();
 } else {
-    $current_user_id = $_SESSION['user-id'];
-    $user_query = "SELECT * FROM users WHERE id='$current_user_id'";
-    $user_result = mysqli_query($conn, $user_query);
-    if(mysqli_num_rows($user_result) > 0) {
-        $user = mysqli_fetch_assoc($user_result);
-        if ($user['is_admin'] == 0) {
-            $_SESSION['message'] = "You are not authorized to access the admin dashboard.";
-            $_SESSION['message_type'] = "error";
-            header('location: ' . ROOT_URL . 'index.php');
-            die();
-        }
-    } else {
-        $_SESSION['message'] = "User session error. Please sign in again.";
-        $_SESSION['message_type'] = "error";
-        header('location: ' . ROOT_URL . 'signin.php');
-        die();
-    }
+    // fetch all books from the database
+    $books_query = "SELECT id, title, author FROM books ORDER BY title ASC";
+    $books_result = mysqli_query($conn, $books_query);
 }
-
-// $books_query = "SELECT id, title, author FROM books ORDER BY title ASC"; // Example query
-// $books_result = mysqli_query($conn, $books_query);
 
 ?>
 
@@ -33,13 +16,15 @@ if (!isset($_SESSION['user-id'])) {
     <div class="container dashboard__container">    
         <aside>
             <ul>
-                <li><a href="add-book.php"><i class="uil uil-book-medical"></i><h5>Add Book</h5></a></li>
                 <li><a href="admin-dashboard.php" class="active"><i class="uil uil-book"></i><h5>Manage Books</h5></a></li>
                 <li><a href="manage-users.php"><i class="uil uil-users-alt"></i><h5>Manage Users</h5></a></li>
             </ul>
         </aside>
         <main>
-            <h2>Manage Books</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2>Manage Books</h2>
+                <a href="add-book.php" class="btn">Add New Book</a>
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -50,16 +35,18 @@ if (!isset($_SESSION['user-id'])) {
                     </tr>   
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>The Great Gatsby</td>
-                        <td>F. Scott Fitzgerald</td>
-                        <td>
-                            <a href="edit-book.php" class="btn sm">Edit</a>
+                    <?php while($book = mysqli_fetch_assoc($books_result)): ?>
+                        <tr>
+                            <td><?= $book['title'] ?></td>
+                            <td><?= $book['author'] ?></td>
+                            <td>
+                                <a href="edit-book.php?id=<?= $book['id'] ?>" class="btn sm">Edit</a>
                         </td>
                         <td>
-                            <a href="delete-book.php" class="btn sm danger">Delete</a>
+                            <a href="delete-book.php?id=<?= $book['id'] ?>" class="btn sm danger">Delete</a>
                         </td>
                     </tr>
+                    <?php endwhile; ?>
                 </tbody>    
             </table>
         </main> 

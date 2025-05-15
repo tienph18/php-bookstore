@@ -1,5 +1,6 @@
 <?php
     require 'config/database.php';
+    require 'utils/upload-file.php';
 
     // Make sure the submit button was clicked
     if(isset($_POST['submit'])) {
@@ -52,33 +53,16 @@
 
         // Check if avatar was uploaded
         if($avatar['name']) {
-            // Rename the image
-            $time = time(); // Make each image name unique
-            $avatar_name = $time . $avatar['name'];
-            $avatar_tmp_name = $avatar['tmp_name'];
-            $avatar_destination_path = 'images/' . $avatar_name;
-
-            // Check if file is an image
-            $allowed_files = ['png', 'jpg', 'jpeg'];
-            $extension = pathinfo($avatar_name, PATHINFO_EXTENSION);
+            $upload_result = upload_file($avatar);
             
-            if(in_array($extension, $allowed_files)) {
-                // Check if image is too large (1MB+)
-                if($avatar['size'] < 1000000) {
-                    // Upload avatar
-                    move_uploaded_file($avatar_tmp_name, $avatar_destination_path);
-                } else {
-                    $_SESSION['signup'] = "File size too big. Should be less than 1MB";
-                    $_SESSION['signup-data'] = $_POST;
-                    header('location: ' . ROOT_URL . 'signup.php');
-                    die();
-                }
-            } else {
-                $_SESSION['signup'] = "File should be png, jpg, or jpeg";
+            if(!$upload_result['status']) {
+                $_SESSION['signup'] = $upload_result['error'];
                 $_SESSION['signup-data'] = $_POST;
                 header('location: ' . ROOT_URL . 'signup.php');
                 die();
             }
+            
+            $avatar_name = $upload_result['filename'];
         } else {
             $_SESSION['signup'] = "Please add an avatar";
             $_SESSION['signup-data'] = $_POST;
