@@ -19,7 +19,7 @@
 
                 if(password_verify($password, $db_password)) {
                     $_SESSION['user-id'] = $user_record['id'];
-                    header('location: ' . ROOT_URL . 'admin/');
+                    header('location: ' . ROOT_URL . 'admin-dashboard.php');
                 } else {
                     $_SESSION['signin'] = "Invalid credentials";
                 }

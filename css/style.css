@@ -349,6 +349,21 @@ input, textarea, select {
   background: var(--color-primary);
   transition: var(--transition);
 }
+.btn.sm {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+}
+.btn.sm:hover {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+.btn.danger {
+  background: var(--color-red);
+}
+.btn.danger:hover {
+  background: var(--color-white);
+  color: var(--color-red);
+}
 .btn:hover {
   background: var(--color-white);
   color: var(--color-primary);
@@ -376,3 +391,84 @@ input, textarea, select {
   background: var(--color-red-light);
   color: var(--color-red);
 }
+
+/* =================== DASHBOARD =================== */
+.dashboard {
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+}
+
+.dashboard aside a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-primary);
+  margin-bottom: 1rem;
+  border-radius: var(--card-border-radius-2);
+}
+
+.dashboard aside a:hover {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.dashboard aside a.active {
+  background: var(--color-gray-900);
+}
+
+.dashboard main {
+  margin-left: 1rem;
+}
+
+.dashboard main h2 {
+  margin: 0 0 2rem 0;
+  line-height: 1;
+}
+
+.dashboard main table {
+  width: 100%;
+  text-align: left;
+}
+
+.dashboard main table th {
+  background: var(--color-gray-700);
+  padding: 0.5rem;
+  color: var(--color-white);
+}
+
+.dashboard main table td {
+  padding: 0.5rem;
+  background: var(--color-gray-900);
+  color: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-700);
+}
+
+.dashboard main table tr:hover td {
+  background: var(--color-bg);
+  color: var(--color-white);
+  transition: var(--transition);
+}
+
+.dashboard__container {
+  display: grid;
+  grid-template-columns: 14rem auto;
+  gap: 4rem;
+  background: var(--color-gray-900);
+  padding: 2rem;
+  border-radius: var(--card-border-radius-2);
+}
+
+.dashboard__container h1 {
+  margin-bottom: 2rem;
+}
+
+.dashboard__container p {
+  margin-bottom: 1rem;
+}
+
+.dashboard__container .btn {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+

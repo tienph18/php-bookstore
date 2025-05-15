@@ -2,7 +2,7 @@
     include 'config/constants.php';
 
     if(isset($_SESSION['user-id'])) {
-        header('location: ' . ROOT_URL . 'admin/');
+        header('location: ' . ROOT_URL . 'admin-dashboard.php');
         die();
     }
 
