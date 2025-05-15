@@ -2,7 +2,7 @@
     include 'partials/header.php';
 
     // Get limit books from the database
-    $query = "SELECT * FROM books ORDER BY created_date DESC LIMIT 3";
+    $query = "SELECT * FROM books ORDER BY created_date DESC LIMIT 10";
     $books = mysqli_query($conn, $query);
 ?>
     
