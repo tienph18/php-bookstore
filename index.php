@@ -52,9 +52,6 @@
                         <?= $book['description'] ?>
                     </p>
                     <div class="post__author">
-                        <!-- <div class="post__author-avatar">
-                            <img src="./images/avatar3.jpg">
-                        </div> -->
                         <div class="post__author-info">
                             <h5>By: <?= $book['author'] ?></h5>
                             <small><?= $book['created_date'] ?></small>

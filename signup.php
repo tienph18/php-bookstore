@@ -1,21 +1,17 @@
 <?php
     require 'config/database.php';
 
+    $fields = ['firstname', 'lastname', 'username', 'email', 'password', 'confirmpassword'];
+    
     if(isset($_SESSION['signup-data'])) {
-        $firstname = $_SESSION['signup-data']['firstname'];
-        $lastname = $_SESSION['signup-data']['lastname'];
-        $username = $_SESSION['signup-data']['username'];
-        $email = $_SESSION['signup-data']['email'];
-        $password = $_SESSION['signup-data']['password'];
-        $confirmpassword = $_SESSION['signup-data']['confirmpassword'];
+        foreach($fields as $field) {
+            $$field = $_SESSION['signup-data'][$field];
+        }
         unset($_SESSION['signup-data']);
     } else {
-        $firstname = '';
-        $lastname = '';
-        $username = '';
-        $email = '';
-        $password = '';
-        $confirmpassword = '';
+        foreach($fields as $field) {
+            $$field = '';
+        }
     }
 ?>
 
@@ -29,7 +25,6 @@
 
         <link rel="stylesheet" href="<?= ROOT_URL ?>/css/style.css">
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     </head>
     <body>

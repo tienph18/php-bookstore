@@ -9,14 +9,6 @@
         $price = $_POST['price'];
         $is_featured = isset($_POST['is_featured']) ? 1 : 0;
 
-        // log above data
-        echo $id . "<br>";
-        echo $title . "<br>";
-        echo $description . "<br>";
-        echo $author . "<br>";
-        echo $price . "<br>";
-        echo $is_featured . "<br>";
-
         if(!$title || !$description || !$author || !$price) {
             $_SESSION['edit-book'] = "Invalid form data on edit page";
             header('location: ' . ROOT_URL . 'edit-book.php');
